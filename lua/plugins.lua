@@ -29,6 +29,9 @@ return require('packer').startup(function()
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
 
+  -- autosave
+  use { 'Pocco81/AutoSave.nvim', config = function() require('autosave').setup() end }
+
   -- TODO lsp + mappings + servers: https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
   -- TODO whichkey?
 end)

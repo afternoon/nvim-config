@@ -21,12 +21,19 @@ local map = function(key)
   end
 end
 
--- rebind <Space> to <Nop> and map <Leader> to <Space>
-map {'n', '<Space>', '<Nop>'}
-vim.g.mapleader = ' '
+-- comma as leader
+vim.g.mapleader = ','
 
--- hide search highlighting
-map {'n', '<Leader>l', ':nohlsearch<CR>'}
+-- use <§> as <Esc> because my silly Apple laptop has a silly DouchBar
+map {'n', '§', '<Esc>'}
+map {'v', '§', '<Esc>gV'}
+map {'o', '§', '<Esc>'}
+map {'c', '§', '<C-c><Esc>'}
+map {'i', '§', '<Esc>`^'}
+
+--
+-- NORMAL
+--
 
 -- window splitting, closing, moving
 map {'n', '<Leader>v', '<C-w>v<C-w>l'}
@@ -37,6 +44,10 @@ map {'n', '<C-j>', '<C-w>j'}
 map {'n', '<C-k>', '<C-w>k'}
 map {'n', '<C-l>', '<C-w>l'}
 
+-- move between buffers with J/K
+map {'n', '<S-l>', ':bnext<CR>'}
+map {'n', '<S-h>', ':bprev<CR>'}
+
 -- shortcuts for deleting, saving, etc
 map {'n', '<Leader>q', ':wqa!<CR>'}
 map {'n', '<Leader>w', ':w!<CR>'}
@@ -44,13 +55,21 @@ map {'n', '<Leader><Esc>', ':q!<CR>'}
 map {'n', '<Leader>d', ':bd!<CR>'}
 map {'n', '<Leader>D', ':bufdo bd<CR>'}
 
--- sort
-map {'n', '<Leader>S', ':sort<CR>'}
-map {'n', '<Leader>U', ':sort u<CR>'}
-
 -- telescope
 map {'n', '<Leader>f', ':Telescope find_files<CR>'}
+map {'n', '<Leader>b', ':Telescope buffers<CR>'}
+
+-- hide search highlighting
+map {'n', '<Leader>l', ':nohlsearch<CR>'}
+
+-- VISUAL MODE
 
 -- keep visual selection after indent
 map {'v', '>', '>gv'}
 map {'v', '<', '<gv'}
+
+-- don't overwrite register when replacing a selection
+map {'v', 'p', '"_dP'}
+
+-- sort visual selection
+map {'v', '<Leader>s', ':sort<CR>'}
