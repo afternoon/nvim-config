@@ -62,6 +62,9 @@ map {'n', '<Leader>b', ':Telescope buffers<CR>'}
 -- hide search highlighting
 map {'n', '<Leader>l', ':nohlsearch<CR>'}
 
+-- toggle file tree view
+map {'n', '<Leader>t', ':NvimTreeToggle<CR>'}
+
 -- VISUAL MODE
 
 -- keep visual selection after indent

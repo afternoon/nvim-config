@@ -7,7 +7,13 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- fancy colorscheme
-  use { 'afternoon/molokai', config = function () vim.cmd('colorscheme molokai') end }
+  use { 'navarasu/onedark.nvim', config = function ()
+    require('onedark').setup {
+      style = 'darker'
+    }
+    require('onedark').load()
+  end }
+
 
   -- fancy bracket completion
   use { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup() end }
@@ -31,6 +37,24 @@ return require('packer').startup(function()
 
   -- autosave
   use { 'Pocco81/AutoSave.nvim', config = function() require('autosave').setup() end }
+
+  -- file tree viewer
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+    config = function() require'nvim-tree'.setup() end
+  }
+
+  -- git info in gutter
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    config = function() require'gitsigns'.setup() end
+  }
 
   -- TODO lsp + mappings + servers: https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
   -- TODO whichkey?
