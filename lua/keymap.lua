@@ -63,7 +63,7 @@ map {'n', '<Leader>b', ':Telescope buffers<CR>'}
 map {'n', '<Leader>l', ':nohlsearch<CR>'}
 
 -- toggle file tree view
-map {'n', '<Leader>t', ':NvimTreeToggle<CR>'}
+map {'n', '<Leader><Space>', ':NvimTreeToggle<CR>'}
 
 -- VISUAL MODE
 
