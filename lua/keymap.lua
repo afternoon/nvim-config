@@ -57,13 +57,26 @@ map {'n', '<Leader>D', ':bufdo bd<CR>'}
 
 -- telescope
 map {'n', '<Leader>f', ':Telescope find_files<CR>'}
+map {'n', '<Leader>g', ':Telescope live_grep<CR>'}
 map {'n', '<Leader>b', ':Telescope buffers<CR>'}
 
 -- hide search highlighting
 map {'n', '<Leader>l', ':nohlsearch<CR>'}
 
+-- open/close quickfix window
+map {'n', '<Leader>z', ':copen<CR>'}
+map {'n', '<Leader>x', ':cclose<CR>'}
+
 -- toggle file tree view
 map {'n', '<Leader><Space>', ':NvimTreeToggle<CR>'}
+
+-- show search results in the centre of the window
+map {'n', 'n', 'nzz'}
+map {'n', 'N', 'Nzz'}
+map {'n', '*', '*zz'}
+map {'n', '#', '#zz'}
+map {'n', 'g*', 'g*zz'}
+map {'n', 'g#', 'g#zz'}
 
 -- VISUAL MODE
 

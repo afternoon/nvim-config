@@ -35,3 +35,14 @@ vim.opt.autoread = true
 -- write files when moving around file lists
 vim.opt.autowrite = true
 vim.opt.autowriteall = true
+
+-- always show sign column
+vim.opt.signcolumn = "yes"
+
+-- use ripgrep for :grep
+vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
+
+-- show color column
+vim.opt.textwidth = 100
+vim.opt.colorcolumn = "101"
+vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg=7, bg="#111111" })
