@@ -18,14 +18,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
--- autocommand that reloads neovim whenever you save the plugins.lua file
---vim.cmd [[
---  augroup packer_user_config
---    autocmd!
---    autocmd BufWritePost plugins.lua source <afile> | PackerSync
---  augroup end
---]]
-
 -- use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
@@ -106,11 +98,28 @@ return require('packer').startup(function()
       -- Snippets
       {'L3MON4D3/LuaSnip'},
       {'rafamadriz/friendly-snippets'},
-    }
+    },
+    config = function ()
+      local lsp = require('lsp-zero')
+
+      lsp_zero.on_attach(function(client, bufnr)
+        -- see :help lsp-zero-keybindings
+        -- to learn the available actions
+        lsp_zero.default_keymaps({buffer = bufnr})
+      end)
+
+      require('mason').setup({})
+      require('mason-lspconfig').setup({
+        ensure_installed = {},
+        handlers = {
+          lsp_zero.default_setup,
+        },
+      })
+    end
   }
 
   -- syntax highlight EVERYTHING
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'nvim-treesitter/nvim-treesitter'
   use 'sheerun/vim-polyglot'
 
   -- arduino
@@ -118,6 +127,8 @@ return require('packer').startup(function()
 
   -- highlight/strip trailing whitespace
   use 'ntpeters/vim-better-whitespace'
+
+  use { 'eraserhd/parinfer-rust', run = "cargo build --release" }
 
   -- sync packer if first run
   if PACKER_BOOTSTRAP then
